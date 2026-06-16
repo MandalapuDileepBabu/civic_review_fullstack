@@ -44,16 +44,22 @@ function sanitizeMiddleware(req, res, next) {
 
 app.use(sanitizeMiddleware);
 
-// CORS configuration with credentials support and dynamic origins whitelist
 const allowedOrigins = [
   'http://localhost:5173',
-  'http://10.117.219.33:5173'
-];
+  process.env.FRONTEND_URL
+].filter(Boolean);
 
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin) || origin.endsWith('.loca.lt') || origin.endsWith('.ngrok-free.app')) {
+    // Remove trailing slash if present for comparison
+    const cleanOrigin = origin.replace(/\/$/, '');
+    if (
+      allowedOrigins.some(o => o.replace(/\/$/, '') === cleanOrigin) ||
+      origin.endsWith('.loca.lt') ||
+      origin.endsWith('.ngrok-free.app') ||
+      origin.endsWith('.vercel.app')
+    ) {
       return callback(null, true);
     }
     return callback(new Error('Not allowed by CORS'));
