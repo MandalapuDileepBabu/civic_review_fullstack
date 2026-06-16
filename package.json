@@ -1,0 +1,10 @@
+{
+  "name": "civic-review-fullstack-root",
+  "version": "1.0.0",
+  "description": "Root package.json for civic review fullstack monorepo deployment",
+  "scripts": {
+    "postinstall": "npm install --prefix backend",
+    "build": "npm install --prefix backend",
+    "start": "npm start --prefix backend"
+  }
+}
