@@ -37,3 +37,6 @@ service_account.json
 *.njsproj
 *.sln
 *.sw?
+
+# Practice set programming
+practice_set_programming.md
