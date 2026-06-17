@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiFetch, API_URL } from "../api/client";
+import { apiFetch, API_URL, fileUrl } from "../api/client";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
 import Input, { Textarea, Select } from "../components/ui/Input";
@@ -518,10 +518,10 @@ export default function CommunitiesPage() {
                             {m.image && (
                               <div className="mt-2 rounded-lg overflow-hidden max-w-xs max-h-48 border border-slate-100">
                                 <img 
-                                  src={`${API_URL}/files/${m.image}`} 
+                                  src={fileUrl(m.image)} 
                                   alt="Chat attachment" 
                                   className="w-full h-full object-cover cursor-pointer hover:scale-102 transition-transform"
-                                  onClick={() => window.open(`${API_URL}/files/${m.image}`, "_blank")}
+                                  onClick={() => window.open(fileUrl(m.image), "_blank")}
                                 />
                               </div>
                             )}
